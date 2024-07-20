@@ -46,13 +46,13 @@ public class Tests
                               public partial class GenerateThis;
                               """;
         const string result = "//MyObj and some generated code";
-        CSharpSourceGeneratorTest<SomethingGenerator, DefaultVerifier> context = new()
+        CSharpSourceGeneratorTest<SomethingGeneratorFromModel, DefaultVerifier> context = new()
         {
             TestState =
             {
                 Sources = { source },
-                GeneratedSources = { (@"SourceGenSample.Generator\SourceGenSample.Generator.SomethingGenerator\Generated.g.cs", SourceText.From(result, Encoding.UTF8)) },
-                AdditionalReferences = { typeof(SomethingGenerator).Assembly, typeof(GenerateSomethingModelAttribute).Assembly }
+                GeneratedSources = { (@"SourceGenSample.Generator\SourceGenSample.Generator.SomethingGeneratorFromModel\Generated.g.cs", SourceText.From(result, Encoding.UTF8)) },
+                AdditionalReferences = { typeof(SomethingGeneratorFromModel).Assembly, typeof(GenerateSomethingModelAttribute).Assembly }
             }
         };
         await context.RunAsync();
